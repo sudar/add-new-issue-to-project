@@ -15,7 +15,7 @@ Toolkit.run( async tools => {
 		const projectName = 'TBD';
 		const columnName = 'TBD';
 
-		const createCard = new Promise( async ( resolve, reject ) => {
+		await new Promise( async ( resolve, reject ) => {
 			try {
 				await tools.github.graphql( {
 					query: `mutation {
@@ -33,9 +33,6 @@ Toolkit.run( async tools => {
 				reject( error );
 			}
 		} )
-
-		// Wait for completion
-		await Promise.all( createCard ).catch( error => tools.exit.failure( error ) );
 
 		// Log success message
 		tools.log.success(
